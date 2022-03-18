@@ -3,6 +3,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  opacity: 0;
+  animation: downToup 1s ease 1s 1 normal forwards;
 }
 
 #quote {
@@ -55,4 +57,14 @@
   justify-items: center;
   width: max-content;
   gap: 20px;
+}
+
+@keyframes downToup {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

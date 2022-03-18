@@ -9,6 +9,7 @@
   width: 100%;
   height: 100%;
   z-index: -1;
+  animation: alpha 1s ease 0s 1 normal none;
 }
 
 html {
@@ -25,4 +26,13 @@ body {
   justify-items: center;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes alpha {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
