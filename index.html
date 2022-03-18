@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="ico" sizes="16x16" href="img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Smooch+Sans:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/widget.css">
+    <link rel="stylesheet" href="css/greeting.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/quotes.css">
+    <title>RB To Do List</title>
+</head>
+
+<body>
+
+    <section id="widget">
+        <div>
+            <p>
+            <h2 id="fulldate"></h2>
+            <h3 id="clock">00 : 00 : 00</h3>
+            </p>
+        </div>
+        <div class="weather_container">
+            <img id="weatherimg" />
+            <div class="weather">
+                <span id="firstspan"></span><br>
+                <span id="secondspan"></span>
+            </div>
+        </div>
+        <p class="copy">&copy; 2022 by Real_Bird</p>
+    </section>
+    <section class="greeting_container">
+        <form id="login-form" class="hidden">
+            <input class="input-holder" required maxlength="15" type="text" placeholder="What is your name?" /><br />
+            <input class="hidden" type="submit" />
+        </form>
+        <h1 class="user hidden"></h1>
+    </section>
+    <section class="todos-container">
+        <div class="todo-sect">
+            <form id="todo-form">
+                <input type="text" placeholder="Write a To Do and Press Enter" />
+            </form>
+            <ul id="todo-list" class="listcontain"></ul>
+        </div>
+    </section>
+    <section class="quote_container">
+        <div class="btn-area"></div>
+        <div id="quote">
+            <span class="quote-text"></span>
+            <span class="quote-author"></span>
+        </div>
+    </section>
+</body>
+
+<script src="js/greeting.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/quotes.js"></script>
+<script src="js/backgroud.js"></script>
+<script src="js/todo.js"></script>
+<script src="js/wheather.js"></script>
+
+</html>

@@ -1,0 +1,59 @@
+.quote_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#quote {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(80, 80, 80, 0.5);
+  height: 4em;
+  border-radius: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#quote > span {
+  width: inherit;
+}
+
+#quote > span.quote-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: -1px 0 #505050, 0 1px #505050, 1px 0 #505050, 0 -1px #505050;
+  color: #dedede;
+}
+
+#quote > span.quote-author {
+  font-size: 0.7em;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: -1px 0 #505050, 0 1px #505050, 1px 0 #505050, 0 -1px #505050;
+  color: #dedede;
+}
+#quote:hover {
+  transform: scale(1.4);
+}
+
+.quote_container button {
+  border: 3px solid #505050;
+  background-color: rgba(0, 0, 0, 0);
+  color: #505050;
+  padding: 5px;
+  font-family: "Smooch Sans", sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.btn-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  width: max-content;
+  gap: 20px;
+}
