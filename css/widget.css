@@ -1,6 +1,7 @@
 #widget {
   display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr;
+  grid-template: 1fr 1fr / 1fr 1.2fr;
+  width: 12em;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   color: white;
   text-align: center;
@@ -47,6 +48,9 @@
 }
 
 @media screen and (max-width: 800px) {
+  #widget {
+    width: max-content;
+  }
   #widget * {
     font-size: 0.8em;
   }
