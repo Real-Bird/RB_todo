@@ -13,32 +13,47 @@
   justify-content: center;
   flex-direction: column;
   background-color: rgba(80, 80, 80, 0.5);
-  height: 4em;
   border-radius: 20px;
   align-items: center;
   margin-bottom: 20px;
+  height: max-content;
+  padding: 5px;
+  transition: 0.6s all;
 }
 
 #quote > span {
   width: inherit;
 }
 
-#quote > span.quote-text {
+.quote-text {
   font-size: 1.2em;
   font-weight: bold;
   text-shadow: -1px 0 #505050, 0 1px #505050, 1px 0 #505050, 0 -1px #505050;
   color: #dedede;
 }
 
-#quote > span.quote-author {
+.quote-author {
+  height: 0;
+  display: block;
   font-size: 0.7em;
   font-weight: bold;
   font-style: italic;
   text-shadow: -1px 0 #505050, 0 1px #505050, 1px 0 #505050, 0 -1px #505050;
   color: #dedede;
+  opacity: 0;
+  transition: 0.3s all;
 }
+
 #quote:hover {
   transform: scale(1.4);
+}
+
+#quote:hover .quote-author {
+  height: 10px;
+  opacity: 1;
+}
+#quote:hover .quote-text {
+  top: 150px;
 }
 
 .quote_container button {
@@ -49,6 +64,7 @@
   font-size: 20px;
   border-radius: 10px;
   margin: 5px 0;
+  cursor: pointer;
 }
 
 .btn-area {
@@ -61,10 +77,44 @@
 
 @keyframes downToup {
   0% {
-    transform: translateY(50%);
+    transform: translateY(10%);
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .quote_container {
+    flex-direction: column-reverse;
+  }
+  #quote {
+    margin: 0;
+  }
+
+  .quote-text {
+    font-size: 0.8em;
+  }
+
+  #quote:hover {
+    transform: scale(1.4);
+  }
+
+  #quote:hover .quote-author {
+    height: 10px;
+    opacity: 1;
+  }
+  #quote:hover .quote-text {
+    top: 150px;
+  }
+  .quote_container button {
+    border: 3px solid #1f1f1f;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    font-family: "Smooch Sans", sans-serif;
+    font-size: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
   }
 }

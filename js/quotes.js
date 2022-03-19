@@ -20,14 +20,14 @@ fetch(QUOTES_URL)
     btnDiv.appendChild(korChangeBtn);
     engChangeBtn.onclick = () => {
       quoteDiv.classList.add(LANG_ENG);
-      author.innerText = Object.values(quoteArr.e_name)[randomIndex];
+      author.innerText = `- by ${Object.values(quoteArr.e_name)[randomIndex]}`;
       quote.innerText = Object.values(quoteArr.e_quote)[randomIndex];
     };
     korChangeBtn.onclick = () => {
       quoteDiv.classList.remove(LANG_ENG);
-      author.innerText = Object.values(quoteArr.k_name)[randomIndex];
+      author.innerText = `- by ${Object.values(quoteArr.k_name)[randomIndex]}`;
       quote.innerText = Object.values(quoteArr.k_quote)[randomIndex];
     };
-    author.innerText = Object.values(quoteArr.k_name)[randomIndex];
+    author.innerText = `- by ${Object.values(quoteArr.k_name)[randomIndex]}`;
     quote.innerText = Object.values(quoteArr.k_quote)[randomIndex];
   });

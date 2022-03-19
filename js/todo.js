@@ -32,16 +32,20 @@ function paintToDo(newTodo) {
   li.id = newTodo.id;
   const span = document.createElement("span");
   span.innerText = newTodo.text;
-  const btn = document.createElement("button");
-  btn.innerText = "❌";
-  btn.className = "delBtn";
-  btn.addEventListener("click", deleteToDo);
+  const delBox = document.createElement("input");
+  const delBoxLabel = document.createElement("label");
+  delBox.class = "delbox";
+  delBox.type = "button";
+  delBoxLabel.addEventListener("click", deleteToDo);
   chBox.id = `${li.id}`;
   chBoxLabel.htmlFor = `${li.id}`;
+  delBox.id = `${li.id}del`;
+  delBoxLabel.htmlFor = `${li.id}del`;
   li.appendChild(chBox);
   li.appendChild(chBoxLabel);
   li.appendChild(span);
-  li.appendChild(btn);
+  li.appendChild(delBox);
+  li.appendChild(delBoxLabel);
   toDoList.appendChild(li);
   toDoList.scrollTop = toDoList.scrollHeight;
   chBoxLabel.onclick = function () {
