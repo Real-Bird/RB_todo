@@ -23,6 +23,7 @@
   overflow: auto;
   color: #505050;
   transform-origin: right bottom;
+  overflow-x: hidden;
 }
 
 #todo-list::-webkit-scrollbar {
@@ -57,21 +58,64 @@ ul {
   transition: 0.3s all;
 }
 
-ul > li > span {
+ul > li > div {
   padding: 0 5px 0 10px;
   font-size: 1.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 10em;
+  transform: translate(-19px, 6px);
+}
+
+div.hover_box {
+  display: none;
+  position: absolute;
+  padding: 30px 20px;
+  font-size: 32px;
+  width: 9em;
+  height: fit-content;
+  left: 79px;
+  top: 91px;
+  background-color: rgba(80, 80, 80);
+  border-radius: 20px;
+  text-align: start;
+  word-break: break-all;
+  color: #dedede;
+}
+
+div.hover_box + button {
+  transform: translate(117px, -321px);
+  background-color: transparent;
+  border: none;
 }
 
 ul > li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
   width: 20em;
-  margin: 2px 0 30px 0;
+  margin: 2px 0 34px 0;
   transform: translate(-23px, 18px);
+  opacity: 1;
 }
+@media screen and (min-width: 800px) {
+  ul > li:nth-child(2n + 1) {
+    animation: easeOutBounce 1.5s linear 0s 1 normal forwards running;
+  }
+
+  ul > li:nth-child(2n) {
+    animation: reverse-easeOutBounce 1.5s linear 0s 1 reverse forwards running;
+  }
+}
+
 input[type="checkbox"],
 input[type="button"] {
   display: none;
 }
-input[type="checkbox"] + label {
+input[type="checkbox"]:not([class="zoominbox"]) + label {
   content: "";
   display: inline-block;
   width: 20px;
@@ -81,7 +125,7 @@ input[type="checkbox"] + label {
   cursor: url(../img/check.png) 20 30, auto;
   transform: translate(-12px, 10px);
 }
-input[type="checkbox"]:checked + label::after {
+input[type="checkbox"]:not([class="zoominbox"]):checked + label::after {
   content: "✔";
   font-size: 30px;
   width: 30px;
@@ -106,11 +150,23 @@ input[type="button"] + label {
   transform: translate(42px, 10px);
 }
 
+input[class="zoominbox"] + label {
+  content: "";
+  background-image: url(../img/zoom_icon.png);
+  float: right;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  cursor: url(../img/zoom_icon.png) 20 30, auto;
+  transform: translate(42px, 10px);
+}
+
 .cancle {
   text-decoration: line-through;
   color: #505050;
 }
 
+/* Animation sector */
 @keyframes checkStamp {
   0% {
     transform: scale(2) translate(0px, -10px);
@@ -132,6 +188,95 @@ input[type="button"] + label {
   }
 }
 
+@keyframes reverse-easeOutBounce {
+  0% {
+    transform: translate(-23px, 18px);
+    opacity: 1;
+  }
+
+  12% {
+    transform: translate(-30px, 18px);
+  }
+
+  24% {
+    transform: translate(16%, 18px);
+  }
+
+  36% {
+    transform: translate(-16%, 18px);
+  }
+
+  54% {
+    transform: translate(28%, 18px);
+  }
+
+  74% {
+    transform: translate(-28%, 18px);
+  }
+
+  82% {
+    transform: translate(40%, 18px);
+  }
+
+  92% {
+    transform: translate(-40%, 18px);
+  }
+
+  96% {
+    transform: translate(50%, 18px);
+  }
+
+  100% {
+    transform: translate(-23px, 18px);
+    opacity: 1;
+  }
+}
+
+@keyframes easeOutBounce {
+  0% {
+    transform: translate(-23px, 18px);
+    opacity: 1;
+  }
+
+  12% {
+    transform: translate(50%, 18px);
+  }
+
+  24% {
+    transform: translate(-40%, 18px);
+  }
+
+  36% {
+    transform: translate(40%, 18px);
+  }
+
+  54% {
+    transform: translate(-28%, 18px);
+  }
+
+  74% {
+    transform: translate(28%, 18px);
+  }
+
+  82% {
+    transform: translate(-16%, 18px);
+  }
+
+  92% {
+    transform: translate(16%, 18px);
+  }
+
+  96% {
+    transform: translate(-30px, 18px);
+  }
+
+  100% {
+    transform: translate(-23px, 18px);
+    opacity: 1;
+  }
+}
+
+/* media sector */
 @media screen and (max-width: 800px) {
   .todo-sect > #todo-form > input {
     width: 6.7em;
@@ -150,20 +295,29 @@ input[type="button"] + label {
     transition: 0.3s all;
   }
 
-  ul > li > span {
+  ul > li > div {
     padding: 0 5px 0 10px;
     font-size: 0.8em;
+    width: 7em;
+    transform: translate(-1px, 0px);
   }
 
   ul > li {
-    width: 7em;
-    margin: 2px 0 0 0;
-    transform: translate(-15px, 1px);
+    width: 9em;
+    margin: 3px 0 1.3px 0;
+    transform: translate(-3px, 3px);
+    opacity: 0;
   }
-  input[type="checkbox"] {
-    display: none;
+
+  ul > li:nth-child(2n + 1) {
+    animation: 1.5s linear 0s 1 normal forwards paused min-easeBounce;
   }
-  input[type="checkbox"] + label {
+
+  ul > li:nth-child(2n) {
+    animation: 1.5s linear 0s 1 reverse forwards paused reverse-min-easeBounce;
+  }
+
+  input[type="checkbox"]:not([class="zoominbox"]) + label {
     content: "";
     display: inline-block;
     width: 7px;
@@ -172,7 +326,7 @@ input[type="button"] + label {
     position: relative;
     transform: translate(4px, 0px);
   }
-  input[type="checkbox"]:checked + label::after {
+  input[type="checkbox"]:not([class="zoominbox"]):checked + label::after {
     content: "✔";
     font-size: 20px;
     width: 10px;
@@ -194,6 +348,115 @@ input[type="button"] + label {
     height: 16px;
     position: relative;
     cursor: url(../img/eraser.png) 20 30, auto;
-    transform: translate(22px, -1px);
+    transform: translate(1px, -3px);
+  }
+
+  input[class="zoominbox"] + label {
+    content: "";
+    background-image: url(../img/zoom_icon_16px.png);
+    float: right;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    cursor: url(../img/zoom_icon.png) 16 16, auto;
+    transform: translate(-5px, -2px);
+  }
+
+  div.hover_box {
+    font-size: 30px;
+    width: 5em;
+    left: -2px;
+    top: 66px;
+  }
+
+  div.hover_box + button {
+    transform: translate(69px, -237px);
+  }
+
+  @keyframes min-easeBounce {
+    0% {
+      transform: translate(-3px, 3px);
+      opacity: 1;
+    }
+
+    12% {
+      transform: translate(50%, 3px);
+    }
+
+    24% {
+      transform: translate(-40%, 3px);
+    }
+
+    36% {
+      transform: translate(40%, 3px);
+    }
+
+    54% {
+      transform: translate(-28%, 3px);
+    }
+
+    74% {
+      transform: translate(28%, 3px);
+    }
+
+    82% {
+      transform: translate(-16%, 3px);
+    }
+
+    92% {
+      transform: translate(16%, 3px);
+    }
+
+    96% {
+      transform: translate(5%, 3px);
+    }
+
+    100% {
+      transform: translate(-3px, 3px);
+      opacity: 1;
+    }
+  }
+  @keyframes reverse-min-easeBounce {
+    0% {
+      transform: translate(-3px, 3px);
+      opacity: 1;
+    }
+
+    12% {
+      transform: translate(-50%, 3px);
+    }
+
+    24% {
+      transform: translate(40%, 3px);
+    }
+
+    36% {
+      transform: translate(-40%, 3px);
+    }
+
+    54% {
+      transform: translate(28%, 3px);
+    }
+
+    74% {
+      transform: translate(-28%, 3px);
+    }
+
+    82% {
+      transform: translate(16%, 3px);
+    }
+
+    92% {
+      transform: translate(-16%, 3px);
+    }
+
+    96% {
+      transform: translate(5%, 3px);
+    }
+
+    100% {
+      transform: translate(-3px, 3px);
+      opacity: 1;
+    }
   }
 }
